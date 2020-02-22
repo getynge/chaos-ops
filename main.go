@@ -20,13 +20,11 @@ func main() {
 	viper.SetDefault("ListenAddress", ":8080")
 	viper.SetDefault("BehindProxy", false)
 
-	viper.SetEnvPrefix("CHAOS")
-
-	viper.BindEnv("DiscordAPIKey", "DISCORD_API_KEY")
-	viper.BindEnv("DiscordAlertChannel", "DISCORD_ALERT_CHANNEL")
-	viper.BindEnv("RequestTimeout", "REQUEST_TIMEOUT")
-	viper.BindEnv("ListenAddress", "LISTEN_ADDRESS")
-	viper.BindEnv("BehindProxy", "BEHIND_PROXY")
+	viper.BindEnv("DiscordAPIKey", "CHAOS_DISCORD_API_KEY")
+	viper.BindEnv("DiscordAlertChannel", "CHAOS_DISCORD_ALERT_CHANNEL")
+	viper.BindEnv("RequestTimeout", "CHAOS_REQUEST_TIMEOUT")
+	viper.BindEnv("ListenAddress", "CHAOS_LISTEN_ADDRESS")
+	viper.BindEnv("BehindProxy", "CHAOS_BEHIND_PROXY")
 
 	key := viper.GetString("DiscordAPIKey")
 	channel := viper.GetString("DiscordAlertChannel")

@@ -3,6 +3,7 @@ package api
 import (
 	"encoding/json"
 	"fmt"
+	"io/ioutil"
 	"log"
 	"net/http"
 )
@@ -14,10 +15,9 @@ type Alert struct {
 }
 
 func (s *Server) alert(w http.ResponseWriter, r *http.Request) {
-	var buffer []byte
 	var alert Alert
 
-	_, err := r.Body.Read(buffer)
+	buffer, err := ioutil.ReadAll(r.Body)
 
 	if err != nil {
 		log.Printf("Could not read request body due to error %s\n", err.Error())
@@ -29,6 +29,7 @@ func (s *Server) alert(w http.ResponseWriter, r *http.Request) {
 
 	if err != nil {
 		log.Printf("Could not unmarshal request JSON, message will not be submitted %s\n", err.Error())
+		log.Printf("Submitted json was %s\n", string(buffer))
 		w.WriteHeader(400)
 		return
 	}
