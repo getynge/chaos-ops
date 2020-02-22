@@ -35,7 +35,7 @@ func (s *Server) alert(w http.ResponseWriter, r *http.Request) {
 	}
 
 	go func() {
-		_, err = s.Discord.ChannelMessageSend(s.AlertChannel.ID, fmt.Sprintf("Alert from:%s\nSeverity:%s\nMessage:%s", alert.Source, alert.Severity, alert.Message))
+		_, err = s.Discord.ChannelMessageSend(s.AlertChannel.ID, fmt.Sprintf("Alert from: %s\nSeverity: %s\nMessage: %s", alert.Source, alert.Severity, alert.Message))
 
 		if err != nil {
 			log.Printf("Failed to send channel message due to error %s\n", err.Error())
